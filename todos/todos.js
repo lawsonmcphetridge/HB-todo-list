@@ -26,25 +26,17 @@ todoForm.addEventListener('submit', async (e) => {
 
 
 
-// let todo = [];
-
-async function handleComplete() {
-    completeTodo();
+async function handleComplete(todo) {
+    await completeTodo(todo.id);
     displayTodos();
 }
 
-// add async complete todo handler function
-    // call completeTodo
-    // swap out todo in array
-    // call displayTodos
-
-   
 
 async function displayTodos() {
     todosEl.innerHTML = '';
     const todos = await getTodos();
     for (let todo of todos) {
-        const todoList = renderTodo(todo);
+        const todoList = renderTodo(todo, handleComplete);
         todosEl.append(todoList);
     }
 }
@@ -64,10 +56,6 @@ logoutButton.addEventListener('click', () => {
 
 
 deleteButton.addEventListener('click', async () => {
-    // delete all todos
     await deleteAllTodos();
-    // modify state to match
-    // todo = [];
-    // re displayTodos
     displayTodos();
 });
