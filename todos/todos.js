@@ -25,7 +25,6 @@ todoForm.addEventListener('submit', async (e) => {
 }); 
 
 
-
 async function handleComplete(todo) {
     await completeTodo(todo.id);
     displayTodos();
